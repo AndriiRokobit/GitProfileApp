@@ -58,6 +58,12 @@ public class Users{
 	@SerializedName("organizations_url")
 	private String organizationsUrl;
 
+	public Users(String login, String avatarUrl, String nodeId) {
+		this.login = login;
+		this.avatarUrl = avatarUrl;
+		this.nodeId = nodeId;
+	}
+
 	public void setGistsUrl(String gistsUrl){
 		this.gistsUrl = gistsUrl;
 	}

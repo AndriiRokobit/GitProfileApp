@@ -5,8 +5,11 @@ import android.widget.Toast;
 
 import com.github.gitusersapp.business.StartInteractor;
 import com.github.gitusersapp.di.scopes.Start;
+import com.github.gitusersapp.model.responce.User;
 import com.github.gitusersapp.model.responce.Users;
+import com.github.gitusersapp.model.responce.UsersList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -19,10 +22,6 @@ import moxy.MvpPresenter;
 import static com.github.gitusersapp.data.constants.Params.PAGE;
 
 
-/**
- * /**
- * Created by Andriy Lykhtey on 2019-07-23.
- */
 @Start
 @InjectViewState
 public class StartPresenter extends MvpPresenter<StartView> {
@@ -49,6 +48,25 @@ public class StartPresenter extends MvpPresenter<StartView> {
 
     private void getUserSuccess(List<Users> users) {
         getViewState().usersList(users);
+    }
+
+    public void searchSelectedUsers(String term){
+        startInteractor.searchUsers(term)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::searchSelectedUsersSuccess, this::searchSelectedUsersFailure);
+    }
+
+    private void searchSelectedUsersSuccess(UsersList usersList) {
+        List<Users> users = new ArrayList<>();
+        for (User u: usersList.getItems()) {
+            users.add(new Users(u.getLogin(), u.getAvatarUrl(), u.getBio()));
+        }
+        getViewState().usersList(users);
+    }
+
+    private void searchSelectedUsersFailure(Throwable throwable) {
+
     }
 
     private static class PaginationCons{

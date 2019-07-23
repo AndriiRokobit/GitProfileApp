@@ -1,10 +1,12 @@
 <resources>
-    <string name="app_name">GitUsersApp</string>
+    <string name="app_name">Git Profile</string>
 
     <string name="btn_search_tittle">Search user</string>
-    <string name="user_name">User name: </string>
-    <string name="user_company">User company: </string>
-    <string name="user_location">User location: </string>
-    <string name="user_blog">User blog: </string>
+    <string name="user_name">Name: </string>
+    <string name="user_company">Company: </string>
+    <string name="user_location">Location: </string>
+    <string name="user_blog">Blog: </string>
+    <string name="user_detail">User detail</string>
+    <string name="search_icon_title">Search</string>
 </resources>
 

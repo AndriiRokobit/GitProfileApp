@@ -8,10 +8,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 
-/**
- * /**
- * Created by Andriy Lykhtey on 2019-07-23.
- */
+
 @Component(modules = {AppContextModule.class, NetworkModule.class})
 @Singleton
 public interface AppComponent {

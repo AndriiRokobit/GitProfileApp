@@ -4,9 +4,11 @@ import com.github.gitusersapp.data.constants.Endpoints;
 import com.github.gitusersapp.data.constants.Params;
 import com.github.gitusersapp.model.responce.User;
 import com.github.gitusersapp.model.responce.Users;
+import com.github.gitusersapp.model.responce.UsersList;
 
 import java.util.List;
 
+import io.reactivex.Observable;
 import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -19,4 +21,7 @@ public interface BaseApi {
 
     @GET(Endpoints.USERS_SINCE)
     Single<List<Users>> getUsers(@Query(Params.PAGE) int page, @Query(Params.PER_PAGE) int perPage);
+
+    @GET(Endpoints.SEARCH)
+    Observable<UsersList> searchGitUsers(@Query(Params.TERM) String searchTerm);
 }

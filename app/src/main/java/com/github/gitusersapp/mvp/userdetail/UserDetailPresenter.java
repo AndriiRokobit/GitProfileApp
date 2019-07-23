@@ -14,10 +14,7 @@ import io.reactivex.schedulers.Schedulers;
 import moxy.InjectViewState;
 import moxy.MvpPresenter;
 
-/**
- * /**
- * Created by Andriy Lykhtey on 2019-07-23.
- */
+
 @InjectViewState
 @Start
 public class UserDetailPresenter extends MvpPresenter<UserDetailView> {

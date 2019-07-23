@@ -25,10 +25,7 @@ import moxy.presenter.ProvidePresenter;
 
 import static com.github.gitusersapp.mvp.start.StartActivity.USER_DETAIL_FR;
 
-/**
- * /**
- * Created by Andriy Lykhtey on 2019-07-23.
- */
+
 public class UserDetailFragment extends BaseFragment implements UserDetailView {
 
     private String userName;
@@ -100,7 +97,7 @@ public class UserDetailFragment extends BaseFragment implements UserDetailView {
 
     private void initViews(User user) {
         if (getContext() != null)
-            Picasso.with(getContext()).load(user.getAvatarUrl()).into(ivDetailUserAvatar);
+            Picasso.get().load(user.getAvatarUrl()).into(ivDetailUserAvatar);
         tvDetailUserName.setText(user.getName());
         tvDetailUserCompany.setText(user.getCompany());
         tvDetailUserLocation.setText(user.getLocation());

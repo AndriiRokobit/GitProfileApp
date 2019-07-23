@@ -10,10 +10,7 @@ import com.github.gitusersapp.di.app.AppContextModule;
 import com.github.gitusersapp.di.app.DaggerAppComponent;
 import com.github.gitusersapp.di.start.StartComponent;
 
-/**
- * /**
- * Created by Andriy Lykhtey on 2019-07-23.
- */
+
 public class AndroidApplication extends Application {
     @NonNull
     private static AppComponent appComponent;

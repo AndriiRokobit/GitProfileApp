@@ -8,4 +8,7 @@ public class Endpoints {
     public static final String USER = "/users/{username}";
 
     public static final String USERS_SINCE = "/users";
+
+    public static final String SEARCH = "/search/users?per_page=2";
+
 }

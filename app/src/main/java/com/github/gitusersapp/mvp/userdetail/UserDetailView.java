@@ -6,10 +6,7 @@ import com.github.gitusersapp.mvp.base.BaseMvpView;
 import moxy.viewstate.strategy.AddToEndSingleStrategy;
 import moxy.viewstate.strategy.StateStrategyType;
 
-/**
- * /**
- * Created by Andriy Lykhtey on 2019-07-23.
- */
+
 public interface UserDetailView extends BaseMvpView {
 
     @StateStrategyType(AddToEndSingleStrategy.class)

@@ -4,6 +4,7 @@ import com.github.gitusersapp.data.api.BaseApi;
 import com.github.gitusersapp.di.scopes.Start;
 import com.github.gitusersapp.model.responce.User;
 import com.github.gitusersapp.model.responce.Users;
+import com.github.gitusersapp.model.responce.UsersList;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,10 +14,7 @@ import javax.inject.Inject;
 import io.reactivex.Observable;
 import io.reactivex.Single;
 
-/**
- * /**
- * Created by Andriy Lykhtey on 2019-07-23.
- */
+
 @Start
 public class StartRepository {
 
@@ -33,5 +31,10 @@ public class StartRepository {
 
     public Single<User> getUser(String userName){
         return baseApi.getUser(userName);
+    }
+
+    public Observable<UsersList> searchUsers(final String searchTerm) {
+        return baseApi.searchGitUsers(searchTerm);
+
     }
 }

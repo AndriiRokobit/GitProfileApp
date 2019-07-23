@@ -2,12 +2,16 @@ package com.github.gitusersapp.mvp.start;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,18 +28,22 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import moxy.presenter.InjectPresenter;
 import moxy.presenter.ProvidePresenter;
 
 public class StartActivity extends BaseActivity implements StartView, UsersAdapter.OnUsersItemClickListener{
 
     public static final String USER_DETAIL_FR = "userDetail";
+    private SearchView searchView;
 
     @BindView(R.id.rvUsers)
     RecyclerView rvUsers;
     @BindView(R.id.container_fragment)
     FrameLayout containerFragment;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.refresh)
+    Button refresh;
 
     @Inject
     UsersAdapter adapter;
@@ -55,12 +63,44 @@ public class StartActivity extends BaseActivity implements StartView, UsersAdapt
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initAdapter();
+        setSupportActionBar(toolbar);
         changeStatusBar(R.color.status_bar_color);
+        refresh.setOnClickListener(v -> {
+            presenter.searchUsers();
+        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        presenter.searchUsers();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu_user_search, menu);
+        final MenuItem searchActionMenuItem = menu.findItem(R.id.menu_search);
+        searchView = (SearchView) searchActionMenuItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if (!searchView.isIconified()) {
+                    searchView.setIconified(true);
+                }
+                presenter.searchSelectedUsers(query);
+                //toolbar.setTitle(query);
+                searchActionMenuItem.collapseActionView();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
+        searchActionMenuItem.expandActionView();
+        return true;
     }
 
     @Override
@@ -71,11 +111,6 @@ public class StartActivity extends BaseActivity implements StartView, UsersAdapt
     @Override
     public void usersList(List<Users> users) {
         adapter.setUserList(users);
-    }
-
-    @OnClick(R.id.btnSearch)
-    public void getAllUsers(){
-        presenter.searchUsers();
     }
 
     @Override

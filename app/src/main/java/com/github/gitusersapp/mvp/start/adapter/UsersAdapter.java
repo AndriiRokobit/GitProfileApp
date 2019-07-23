@@ -11,7 +11,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.gitusersapp.R;
-import com.github.gitusersapp.model.responce.User;
 import com.github.gitusersapp.model.responce.Users;
 import com.squareup.picasso.Picasso;
 
@@ -23,10 +22,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * /**
- * Created by Andriy Lykhtey on 2019-07-23.
- */
+
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHolder> {
 
     private List<Users> users = Collections.emptyList();
@@ -93,7 +89,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
                 onUsersItemClickListener.userClicked(user.getLogin());
             });
 
-            Picasso.with(ivUserAvatar.getContext()).load(user.getAvatarUrl()).into(ivUserAvatar);
+            Picasso.get().load(user.getAvatarUrl()).into(ivUserAvatar);
         }
     }
 
