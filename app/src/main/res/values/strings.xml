@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">GitUsersApp</string>
+
+    <string name="btn_search_tittle">Search user</string>
+    <string name="user_name">User name: </string>
+    <string name="user_company">User company: </string>
+    <string name="user_location">User location: </string>
+    <string name="user_blog">User blog: </string>
+</resources>
+
